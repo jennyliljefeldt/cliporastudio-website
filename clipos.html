@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clipos – Din restaurangs AI-assistent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest: #2D4A3E;
+  --forest-dark: #1a3028;
+  --sage:   #7A9E8E;
+  --blush:  #E8B4B8;
+  --rose:   #C97B84;
+  --cream:  #FAF6F0;
+  --gold:   #C9A84C;
+  --silver: #A8B4BC;
+  --ink:    #1A2420;
+  --white:  #FFFFFF;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  background: var(--forest);
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+/* ── EYEBROW ── */
+.eyebrow {
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  display: block;
+}
+
+/* ── GOLD DIVIDER ── */
+.divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto 40px;
+}
+
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(160deg, var(--forest-dark) 0%, var(--forest) 60%, #1e3d32 100%);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px 60px;
+  overflow: hidden;
+}
+
+/* botanical blobs */
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50% 0 50% 0;
+  background: rgba(201,168,76,0.06);
+  top: -100px; right: -100px;
+  transform: rotate(-25deg);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 400px; height: 400px;
+  border-radius: 50% 0 50% 0;
+  background: rgba(232,180,184,0.05);
+  bottom: -80px; left: -80px;
+  transform: rotate(20deg);
+  pointer-events: none;
+}
+
+/* logo */
+.logo-wrap {
+  margin-bottom: 48px;
+  animation: fadeUp 0.8s ease both;
+}
+
+.hero-eyebrow {
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+  opacity: 0.85;
+  animation: fadeUp 0.8s 0.1s ease both;
+}
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(40px, 7vw, 82px);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  color: var(--white);
+  max-width: 780px;
+  margin-bottom: 24px;
+  animation: fadeUp 0.9s 0.2s ease both;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--blush);
+}
+
+.hero-sub {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.65);
+  max-width: 480px;
+  margin-bottom: 40px;
+  animation: fadeUp 0.9s 0.35s ease both;
+}
+
+.hero-cta-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  animation: fadeUp 0.9s 0.5s ease both;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 16px 40px;
+  background: var(--gold);
+  color: var(--ink);
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.2s;
+}
+.btn-primary:hover { background: #d4b05a; transform: translateY(-2px); }
+
+.hero-micro {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 1px;
+}
+
+/* stats row */
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 72px;
+  animation: fadeUp 1s 0.65s ease both;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.stat {
+  text-align: center;
+}
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-top: 6px;
+}
+
+/* ══════════════════════════════════════
+   DEMO SECTION
+══════════════════════════════════════ */
+.demo-section {
+  background: var(--cream);
+  padding: 96px 24px;
+}
+
+.demo-section .section-head {
+  text-align: center;
+  margin-bottom: 52px;
+}
+
+.demo-section h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(34px, 5vw, 56px);
+  font-weight: 300;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.demo-section h2 em { font-style: italic; color: var(--rose); }
+
+.demo-section .sub {
+  font-size: 14px;
+  color: rgba(26,36,32,0.55);
+  max-width: 440px;
+  margin: 0 auto 8px;
+  line-height: 1.7;
+}
+
+/* chat widget */
+.chat-wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  border: 1px solid rgba(45,74,62,0.12);
+  background: var(--white);
+  box-shadow: 0 20px 60px rgba(45,74,62,0.10);
+  overflow: hidden;
+}
+
+.chat-header {
+  background: var(--forest);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.chat-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50% 0 50% 0;
+  background: linear-gradient(135deg, var(--sage), var(--forest-dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  color: var(--blush);
+  font-style: italic;
+}
+.chat-header-info { flex: 1; }
+.chat-header-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--white);
+}
+.chat-header-status {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-top: 1px;
+}
+.chat-online-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #4CAF50;
+  box-shadow: 0 0 6px rgba(76,175,80,0.6);
+}
+
+.chat-messages {
+  height: 340px;
+  overflow-y: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: #faf8f5;
+}
+
+.chat-messages::-webkit-scrollbar { width: 4px; }
+.chat-messages::-webkit-scrollbar-thumb { background: rgba(45,74,62,0.15); border-radius: 2px; }
+
+.msg {
+  max-width: 80%;
+  animation: msgIn 0.3s ease;
+}
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.msg-bot { align-self: flex-start; }
+.msg-user { align-self: flex-end; }
+
+.msg-bubble {
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 1.65;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+}
+.msg-bot .msg-bubble {
+  background: var(--white);
+  color: var(--ink);
+  border: 1px solid rgba(45,74,62,0.09);
+  border-radius: 0 12px 12px 12px;
+}
+.msg-user .msg-bubble {
+  background: var(--forest);
+  color: var(--white);
+  border-radius: 12px 0 12px 12px;
+}
+.msg-name {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(26,36,32,0.35);
+  margin-bottom: 5px;
+  padding-left: 2px;
+}
+.msg-user .msg-name {
+  text-align: right;
+  padding-right: 2px;
+}
+
+/* typing indicator */
+.typing {
+  align-self: flex-start;
+  display: none;
+}
+.typing-bubble {
+  background: var(--white);
+  border: 1px solid rgba(45,74,62,0.09);
+  border-radius: 0 12px 12px 12px;
+  padding: 14px 18px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.typing-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--sage);
+  animation: typingDot 1.2s infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typingDot {
+  0%,60%,100% { transform: translateY(0); opacity: 0.5; }
+  30% { transform: translateY(-5px); opacity: 1; }
+}
+
+/* example prompts */
+.prompt-chips {
+  padding: 14px 24px;
+  border-top: 1px solid rgba(45,74,62,0.07);
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  background: var(--white);
+}
+.chip {
+  padding: 6px 14px;
+  border: 1px solid rgba(45,74,62,0.18);
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--forest);
+  cursor: pointer;
+  transition: all 0.2s;
+  background: transparent;
+  white-space: nowrap;
+}
+.chip:hover {
+  background: var(--forest);
+  color: var(--white);
+  border-color: var(--forest);
+}
+
+/* chat input */
+.chat-input-wrap {
+  padding: 16px 24px;
+  border-top: 1px solid rgba(45,74,62,0.09);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: var(--white);
+}
+.chat-input {
+  flex: 1;
+  border: 1px solid rgba(45,74,62,0.15);
+  padding: 11px 16px;
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--ink);
+  background: var(--cream);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.chat-input:focus { border-color: var(--sage); }
+.chat-input::placeholder { color: rgba(26,36,32,0.35); }
+
+.chat-send {
+  width: 42px; height: 42px;
+  background: var(--forest);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.chat-send:hover { background: var(--forest-dark); }
+.chat-send svg { width: 16px; height: 16px; fill: var(--white); }
+
+/* ══════════════════════════════════════
+   VALUE SECTION
+══════════════════════════════════════ */
+.value-section {
+  background: var(--forest);
+  padding: 96px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.value-section::before {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50% 0 50% 0;
+  background: rgba(201,168,76,0.05);
+  top: -150px; left: -150px;
+  transform: rotate(15deg);
+  pointer-events: none;
+}
+
+.value-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.value-left h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(34px, 4.5vw, 54px);
+  font-weight: 300;
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+.value-left h2 em { font-style: italic; color: var(--blush); }
+
+.value-left p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.6);
+  max-width: 380px;
+}
+
+.value-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.value-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-left: 3px solid var(--gold);
+  padding: 20px 24px;
+  transition: background 0.2s;
+}
+.value-card:hover { background: rgba(255,255,255,0.07); }
+
+.value-card-title {
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 5px;
+}
+.value-card-text {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+}
+
+/* ══════════════════════════════════════
+   HOW IT WORKS
+══════════════════════════════════════ */
+.how-section {
+  background: var(--cream);
+  padding: 96px 24px;
+}
+.how-section .section-head {
+  text-align: center;
+  margin-bottom: 64px;
+}
+.how-section h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(34px, 5vw, 54px);
+  font-weight: 300;
+  color: var(--ink);
+}
+.how-section h2 em { font-style: italic; color: var(--rose); }
+
+.steps {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 24px;
+  align-items: flex-start;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(45,74,62,0.09);
+}
+.step:last-child { border-bottom: none; }
+
+.step-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+  opacity: 0.7;
+}
+.step-content h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.step-content p {
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(26,36,32,0.6);
+  line-height: 1.7;
+}
+
+/* ══════════════════════════════════════
+   TRUST SECTION
+══════════════════════════════════════ */
+.trust-section {
+  background: var(--forest-dark);
+  padding: 80px 24px;
+  text-align: center;
+}
+.trust-section h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 300;
+  margin-bottom: 12px;
+}
+.trust-section h2 em { font-style: italic; color: var(--blush); }
+.trust-section p {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+  max-width: 460px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* ══════════════════════════════════════
+   CTA SECTION
+══════════════════════════════════════ */
+.cta-section {
+  background: var(--cream);
+  padding: 100px 24px;
+  text-align: center;
+}
+.cta-section h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 6vw, 68px);
+  font-weight: 300;
+  color: var(--ink);
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+.cta-section h2 em { font-style: italic; color: var(--rose); }
+.cta-section p {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(26,36,32,0.55);
+  max-width: 420px;
+  margin: 0 auto 40px;
+  line-height: 1.8;
+}
+.cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-secondary {
+  display: inline-block;
+  padding: 15px 36px;
+  border: 1.5px solid rgba(45,74,62,0.3);
+  color: var(--forest);
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.25s;
+}
+.btn-secondary:hover {
+  background: var(--forest);
+  color: var(--white);
+  border-color: var(--forest);
+}
+
+/* ══════════════════════════════════════
+   JENNY SECTION
+══════════════════════════════════════ */
+.jenny-section {
+  background: var(--forest);
+  padding: 80px 24px;
+}
+.jenny-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+.jenny-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50% 0 50% 0;
+  background: linear-gradient(135deg, var(--sage), var(--forest-dark));
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-style: italic;
+  color: var(--blush);
+}
+.jenny-text {}
+.jenny-text h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  margin-bottom: 12px;
+}
+.jenny-text h3 em { font-style: italic; color: var(--blush); }
+.jenny-text p {
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.8;
+}
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer {
+  background: var(--ink);
+  padding: 40px 24px;
+  text-align: center;
+}
+footer p {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+}
+footer a { color: var(--gold); text-decoration: none; }
+
+/* ══════════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 700px) {
+  .value-inner { grid-template-columns: 1fr; gap: 40px; }
+  .jenny-inner { flex-direction: column; gap: 24px; }
+  .hero-stats { gap: 28px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="logo-wrap">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 110" width="240" height="73">
+      <defs>
+        <linearGradient id="lgold" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#E8C96A"/>
+          <stop offset="50%" style="stop-color:#C9A84C"/>
+          <stop offset="100%" style="stop-color:#A07830"/>
+        </linearGradient>
+        <linearGradient id="lsage" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#9ABCAC"/>
+          <stop offset="100%" style="stop-color:#5A8070"/>
+        </linearGradient>
+        <linearGradient id="lblush" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#F0C4C8"/>
+          <stop offset="100%" style="stop-color:#C97B84"/>
+        </linearGradient>
+      </defs>
+      <ellipse cx="36" cy="46" rx="7" ry="20" fill="url(#lsage)" opacity="0.85" transform="rotate(-38 36 46)"/>
+      <ellipse cx="50" cy="38" rx="6" ry="18" fill="url(#lblush)" opacity="0.9" transform="rotate(28 50 38)"/>
+      <ellipse cx="43" cy="28" rx="5" ry="14" fill="url(#lgold)" opacity="0.85" transform="rotate(-5 43 28)"/>
+      <ellipse cx="42" cy="42" rx="4" ry="13" fill="url(#lsage)" opacity="0.95" transform="rotate(10 42 42)"/>
+      <circle cx="42" cy="50" r="3" fill="url(#lgold)"/>
+      <line x1="42" y1="45" x2="42" y2="43" stroke="#E8C96A" stroke-width="1" opacity="0.7"/>
+      <line x1="42" y1="55" x2="42" y2="58" stroke="#E8C96A" stroke-width="1" opacity="0.7"/>
+      <line x1="36" y1="50" x2="33" y2="50" stroke="#E8C96A" stroke-width="1" opacity="0.7"/>
+      <line x1="48" y1="50" x2="51" y2="50" stroke="#E8C96A" stroke-width="1" opacity="0.7"/>
+      <text x="64" y="59" font-family="Cormorant Garamond,Georgia,serif" font-size="38" font-weight="300" fill="#FFFFFF" letter-spacing="1">Clipora</text>
+      <text x="65" y="75" font-family="Cormorant Garamond,Georgia,serif" font-size="15" font-weight="300" font-style="italic" fill="#E8B4B8" letter-spacing="5">Studio</text>
+      <line x1="64" y1="63" x2="255" y2="63" stroke="url(#lgold)" stroke-width="0.5" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <p class="hero-eyebrow">AI-assistent för restauranger</p>
+
+  <h1>En <em>smart assistent</em> som tar hand om dina gäster — dygnet runt</h1>
+
+  <p class="hero-sub">Fungerar dygnet runt. Missar aldrig en fråga. Kräver ingen teknisk kunskap.</p>
+
+  <div class="hero-cta-wrap">
+    <a href="#demo" class="btn-primary">Testa live-demo</a>
+    <p class="hero-micro">Ingen installation &nbsp;·&nbsp; Testa direkt i chatten nedan</p>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">24/7</div>
+      <div class="stat-label">Alltid tillgänglig</div>
+    </div>
+    <div class="stat" style="padding: 0 40px; border-left: 1px solid rgba(201,168,76,0.2); border-right: 1px solid rgba(201,168,76,0.2);">
+      <div class="stat-num">0</div>
+      <div class="stat-label">Missade bokningar</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Tid för service</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DEMO ══ -->
+<section class="demo-section" id="demo">
+  <div class="section-head">
+    <span class="eyebrow" style="color: var(--rose);">Prova själv</span>
+    <h2>Testa <em>Clipos</em> — som om du vore en gäst</h2>
+    <p class="sub">Skriv en fråga till Restaurang Clipos och se hur assistenten svarar på riktigt.</p>
+  </div>
+
+  <div style="max-width:640px;margin:0 auto 20px;display:flex;align-items:center;gap:12px;">
+    <label style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ink);opacity:0.6;white-space:nowrap;">Restaurang ID</label>
+    <input type="text" id="restaurantIdInput" value="DEMO_999"
+      style="flex:1;border:1px solid rgba(45,74,62,0.2);padding:10px 16px;font-family:'Jost',sans-serif;font-size:13px;color:var(--ink);background:var(--white);outline:none;"
+      onchange="updateRestaurantId(this.value)"
+      oninput="updateRestaurantId(this.value)"
+    >
+  </div>
+
+  <div class="chat-wrap">
+    <div class="chat-header">
+      <div class="chat-avatar">C</div>
+      <div class="chat-header-info">
+        <div class="chat-header-name">Clip<span style="font-style:italic;color:#E8B4B8;">os</span></div>
+        <div class="chat-header-status">Restaurang Clipos &nbsp;·&nbsp; Demo</div>
+      </div>
+      <div class="chat-online-dot"></div>
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+      <div class="msg msg-bot">
+        <div class="msg-name">Clipos</div>
+        <div class="msg-bubble">Hej och välkommen till Restaurang Clipos! 🌿 Jag är din digitala assistent — fråga mig om öppettider, meny, bokningar eller vad som helst annat. Hur kan jag hjälpa dig?</div>
+      </div>
+    </div>
+
+    <div class="typing" id="typingIndicator">
+      <div class="typing-bubble">
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+      </div>
+    </div>
+
+    <div class="prompt-chips">
+      <button class="chip" onclick="sendChip(this)">Har ni öppet idag?</button>
+      <button class="chip" onclick="sendChip(this)">Vad finns det för lunch?</button>
+      <button class="chip" onclick="sendChip(this)">Boka bord för 2 imorgon kl 19</button>
+      <button class="chip" onclick="sendChip(this)">Har ni vegetariskt?</button>
+    </div>
+
+    <div class="chat-input-wrap">
+      <input type="text" class="chat-input" id="chatInput" placeholder="Skriv din fråga här..." onkeydown="if(event.key==='Enter') sendMessage()">
+      <button class="chat-send" onclick="sendMessage()">
+        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ VALUE ══ -->
+<section class="value-section">
+  <div class="value-inner">
+    <div class="value-left">
+      <span class="eyebrow">Det här händer i din restaurang</span>
+      <h2>Mer tid för det du<br><em>verkligen älskar</em></h2>
+      <p>Varje fråga som besvaras automatiskt är ett samtal du slipper. Varje bokning som tas emot klockan 02.00 är en gäst du annars hade missat.</p>
+    </div>
+    <div class="value-cards">
+      <div class="value-card">
+        <div class="value-card-title">Inga missade bokningar</div>
+        <div class="value-card-text">Clipos tar emot och bekräftar bokningar dygnet runt — även när ni har stängt.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-card-title">Gäster får svar direkt</div>
+        <div class="value-card-text">Öppettider, meny, allergener — svar på sekunder, inte timmar.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-card-title">Mindre stress i personalen</div>
+        <div class="value-card-text">Färre avbrott under service. Mer fokus på upplevelsen i restaurangen.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-card-title">Alltid tillgänglig</div>
+        <div class="value-card-text">365 dagar om året. Aldrig sjuk. Aldrig trött. Alltid vänlig.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW ══ -->
+<section class="how-section">
+  <div class="section-head">
+    <span class="eyebrow" style="color:var(--rose);">Så enkelt är det</span>
+    <h2>Fyra steg — <em>sedan sköter sig Clipos</em></h2>
+  </div>
+  <div class="divider"></div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <h3>Vi kopplar din meny och info</h3>
+        <p>Du delar med dig av restaurangens information — öppettider, meny, bokningsregler. Vi sätter upp allt.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <h3>Clipos svarar automatiskt</h3>
+        <p>Gäster kan ställa frågor direkt — via er hemsida, sociala medier eller andra kanaler ni väljer.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <h3>Bokningar tas emot och bekräftas</h3>
+        <p>Clipos hanterar bordsbokning med kapacitetskontroll. Du ser alla bokningar direkt i ert system.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-content">
+        <h3>Du får mer tid över</h3>
+        <p>Fokusera på det du är bäst på — att skapa upplevelser för dina gäster. Clipos tar hand om resten.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TRUST ══ -->
+<section class="trust-section">
+  <span class="eyebrow">Inga krav på teknisk kunskap</span>
+  <h2>Du behöver inte kunna<br><em>ett enda tekniskt ord</em></h2>
+  <br>
+  <div class="divider"></div>
+  <p>Vi sätter upp allt åt dig. Du använder det bara — precis som du använder din telefon.</p>
+</section>
+
+<!-- ══ CTA ══ -->
+<section class="cta-section" id="kontakt">
+  <span class="eyebrow" style="color:var(--rose);">Kom igång</span>
+  <h2>Vill du ha <em>Clipos</em><br>i din restaurang?</h2>
+  <p>Jag sätter upp en AI-assistent anpassad just för din restaurang. Hör av dig så berättar jag mer.</p>
+  <div class="cta-buttons">
+    <a href="/kontakt" class="btn-primary">Boka demo</a>
+    <a href="/kontakt" class="btn-secondary">Kontakta mig direkt</a>
+  </div>
+</section>
+
+<!-- ══ JENNY ══ -->
+<section class="jenny-section">
+  <div class="jenny-inner">
+    <div class="jenny-avatar">J</div>
+    <div class="jenny-text">
+      <h3>Hej, jag heter <em>Jenny</em></h3>
+      <p>Jag bygger smarta AI-lösningar som faktiskt används i verkligheten — inte bara imponerar på ett möte. Clipos är min lösning för restauranger som bryr sig om sina gäster men inte hinner vara tillgängliga dygnet runt.<br><br>Vill du testa Clipos för din restaurang? Hör av dig.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <p>© 2026 <a href="/">Clipora Studio</a> &nbsp;·&nbsp; Tekniken är inte målet. Resultatet är allt.</p>
+</footer>
+
+<script>
+const WEBHOOK_BASE = "https://jennyliljefeldt.app.n8n.cloud/webhook/f8e966b4-4807-4e66-8a61-41fde822c858/restaurant";
+let currentRestaurantId = "DEMO_999";
+function getWebhookUrl() {
+  return WEBHOOK_BASE + "/" + currentRestaurantId;
+}
+
+const messagesEl = document.getElementById("chatMessages");
+const inputEl    = document.getElementById("chatInput");
+const typingEl   = document.getElementById("typingIndicator");
+
+function addMessage(text, isUser) {
+  const msg = document.createElement("div");
+  msg.className = "msg " + (isUser ? "msg-user" : "msg-bot");
+  msg.innerHTML = `
+    <div class="msg-name">${isUser ? "Du" : "Clipos"}</div>
+    <div class="msg-bubble">${text}</div>
+  `;
+  messagesEl.appendChild(msg);
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+
+function showTyping(show) {
+  typingEl.style.display = show ? "flex" : "none";
+  if (show) messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+
+async function sendMessage(text) {
+  const msg = text || inputEl.value.trim();
+  if (!msg) return;
+  inputEl.value = "";
+
+  addMessage(msg, true);
+  showTyping(true);
+
+  try {
+    const res = await fetch(getWebhookUrl(), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: msg, sessionId: getSession() })
+    });
+    const data = await res.json();
+    showTyping(false);
+    const reply = data.output || data.message || data.text || data.response || (typeof data === "string" ? data : "Tack för din fråga! Jag återkommer strax.");
+    addMessage(reply, false);
+  } catch(e) {
+    showTyping(false);
+    addMessage("Hoppsan, något gick fel. Försök igen om ett ögonblick!", false);
+  }
+}
+
+function sendChip(el) {
+  sendMessage(el.textContent);
+}
+
+function updateRestaurantId(val) {
+  currentRestaurantId = val.trim() || "DEMO_999";
+}
+
+function getSession() {
+  if (!sessionStorage.cliposId) {
+    sessionStorage.cliposId = "sess_" + Math.random().toString(36).slice(2);
+  }
+  return sessionStorage.cliposId;
+}
+</script>
+
+</body>
+</html>
