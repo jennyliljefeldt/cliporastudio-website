@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="sv">
 <head>
@@ -974,7 +975,7 @@ async function sendMessage(text) {
     });
     const data = await res.json();
     showTyping(false);
-    const reply = data.output || data.message || data.text || data.response || (typeof data === "string" ? data : "Tack för din fråga! Jag återkommer strax.");
+    const reply = data.reply || data.output || data.message || data.text || data.response || (typeof data === "string" ? data : "Tack för din fråga! Jag återkommer strax.");
     addMessage(reply, false);
   } catch(e) {
     showTyping(false);
