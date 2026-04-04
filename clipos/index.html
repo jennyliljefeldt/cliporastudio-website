@@ -943,12 +943,20 @@ const messagesEl = document.getElementById("chatMessages");
 const inputEl    = document.getElementById("chatInput");
 const typingEl   = document.getElementById("typingIndicator");
 
+function parseMarkdown(text) {
+  return text
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*(.+?)\*/g, "<em>$1</em>")
+    .replace(/\n/g, "<br>");
+}
+
 function addMessage(text, isUser) {
   const msg = document.createElement("div");
   msg.className = "msg " + (isUser ? "msg-user" : "msg-bot");
   msg.innerHTML = `
     <div class="msg-name">${isUser ? "Du" : "Clipos"}</div>
-    <div class="msg-bubble">${text}</div>
+    <div class="msg-bubble">${isUser ? text : parseMarkdown(text)}</div>
   `;
   messagesEl.appendChild(msg);
   messagesEl.scrollTop = messagesEl.scrollHeight;
