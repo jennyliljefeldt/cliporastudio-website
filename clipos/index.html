@@ -935,6 +935,7 @@ footer a { color: var(--gold); text-decoration: none; }
 <script>
 const WEBHOOK_BASE = "https://jennyliljefeldt.app.n8n.cloud/webhook/f8e966b4-4807-4e66-8a61-41fde822c858/restaurant";
 let currentRestaurantId = "DEMO_999";
+let conversationHistory = [];
 function getWebhookUrl() {
   return WEBHOOK_BASE + "/" + currentRestaurantId;
 }
@@ -979,11 +980,13 @@ async function sendMessage(text) {
     const res = await fetch(getWebhookUrl(), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: msg, sessionId: getSession() })
+      body: JSON.stringify({ message: msg, sessionId: getSession(), conversationHistory: conversationHistory.join("\n") })
     });
     const data = await res.json();
     showTyping(false);
     const reply = data.reply || data.output || data.message || data.text || data.response || (typeof data === "string" ? data : "Tack för din fråga! Jag återkommer strax.");
+    conversationHistory.push("Gäst: " + msg);
+    conversationHistory.push("Clipos: " + reply);
     addMessage(reply, false);
   } catch(e) {
     showTyping(false);
