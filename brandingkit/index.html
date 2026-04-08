@@ -1,0 +1,1057 @@
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brandingkit — Clipora Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #2D4A3E;
+    --sage:   #7A9E8E;
+    --blush:  #E8B4B8;
+    --rose:   #C97B84;
+    --gold:   #C9A84C;
+    --silver: #A8B4BC;
+    --cream:  #FAF6F0;
+    --ink:    #1A2420;
+    --white:  #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── Typography ── */
+  .eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ── Gold line ── */
+  .gold-line {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 28px auto;
+  }
+
+  /* ── Blobs ── */
+  .blob {
+    position: absolute;
+    border-radius: 50% 0 50% 0;
+    pointer-events: none;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(45,74,62,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-wordmark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--white);
+    letter-spacing: 1px;
+  }
+
+  .nav-wordmark em {
+    font-style: italic;
+    color: var(--blush);
+    font-size: 13px;
+    display: block;
+    letter-spacing: 4px;
+    margin-top: -4px;
+  }
+
+  .nav-cta {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--gold);
+    padding: 10px 22px;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .nav-cta:hover {
+    background: var(--white);
+  }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: var(--forest);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 0 80px;
+  }
+
+  #hero .bg-glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 80% at 15% 50%, rgba(201,168,76,0.09) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 85% 25%, rgba(232,180,184,0.08) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  #hero .blob-1 { width: 500px; height: 300px; background: var(--sage); opacity: 0.05; top: -80px; right: -100px; transform: rotate(25deg); }
+  #hero .blob-2 { width: 350px; height: 220px; background: var(--blush); opacity: 0.06; bottom: 40px; left: -80px; transform: rotate(-15deg); }
+  #hero .blob-3 { width: 200px; height: 130px; background: var(--gold); opacity: 0.04; top: 40%; right: 10%; transform: rotate(40deg); }
+
+  #hero .inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  #hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 6vw, 86px);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    margin: 20px 0 28px;
+  }
+
+  #hero h1 em {
+    font-style: italic;
+    color: var(--blush);
+    display: block;
+  }
+
+  #hero p {
+    font-size: clamp(15px, 1.6vw, 18px);
+    color: rgba(255,255,255,0.7);
+    line-height: 1.8;
+    max-width: 460px;
+    margin-bottom: 40px;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--gold);
+    padding: 16px 32px;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .hero-cta:hover {
+    background: var(--white);
+    gap: 20px;
+  }
+
+  .hero-cta::after {
+    content: '→';
+    font-size: 14px;
+  }
+
+  /* Hero right — visual kit preview */
+  .hero-kit {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .kit-preview-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-left: 3px solid var(--gold);
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .kit-preview-card:nth-child(1) { animation-delay: 0.2s; }
+  .kit-preview-card:nth-child(2) { animation-delay: 0.35s; }
+  .kit-preview-card:nth-child(3) { animation-delay: 0.5s; }
+  .kit-preview-card:nth-child(4) { animation-delay: 0.65s; }
+
+  .kit-preview-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .kit-preview-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--white);
+  }
+
+  .kit-preview-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.5;
+    margin-top: 2px;
+  }
+
+  /* ── INVESTMENT SECTION ── */
+  #investering {
+    background: var(--cream);
+    padding: 120px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #investering .blob-1 { width: 400px; height: 250px; background: var(--blush); opacity: 0.06; top: -80px; right: -60px; transform: rotate(-20deg); }
+  #investering .blob-2 { width: 300px; height: 200px; background: var(--sage); opacity: 0.06; bottom: -60px; left: -40px; transform: rotate(15deg); }
+
+  #investering .inner {
+    position: relative;
+    z-index: 2;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  #investering h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 5vw, 64px);
+    font-weight: 300;
+    color: var(--forest);
+    line-height: 1.1;
+    margin: 16px 0 24px;
+  }
+
+  #investering h2 em {
+    font-style: italic;
+    color: var(--rose);
+  }
+
+  #investering .lead {
+    font-size: 17px;
+    color: rgba(26,36,32,0.65);
+    line-height: 1.8;
+    max-width: 580px;
+    margin: 0 auto 60px;
+  }
+
+  /* Value props */
+  .value-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 60px;
+    text-align: left;
+  }
+
+  .value-card {
+    background: var(--forest);
+    padding: 36px 28px;
+    position: relative;
+  }
+
+  .value-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+
+  .value-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .value-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  .value-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+  }
+
+  /* Price box */
+  .price-box {
+    background: var(--forest);
+    padding: 56px 64px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .price-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--gold);
+  }
+
+  .price-box-glow {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 20% 50%, rgba(201,168,76,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .price-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .price-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .price-unit {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 24px;
+  }
+
+  .price-note {
+    font-size: 12px;
+    font-style: italic;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.6;
+  }
+
+  .price-includes {
+    list-style: none;
+  }
+
+  .price-includes li {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    line-height: 1.5;
+  }
+
+  .price-includes li::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* ── BEFORE/AFTER ── */
+  #exempel {
+    background: var(--forest);
+    padding: 120px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #exempel .bg-glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 10% 50%, rgba(201,168,76,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 50% at 90% 30%, rgba(232,180,184,0.06) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  #exempel .inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  #exempel .section-head {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  #exempel h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4.5vw, 58px);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.1;
+    margin: 16px 0;
+  }
+
+  #exempel h2 em { font-style: italic; color: var(--blush); }
+
+  #exempel p.lead {
+    font-size: 15px;
+    color: rgba(255,255,255,0.55);
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .before-after {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  /* BEFORE card */
+  .before-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 36px;
+    position: relative;
+  }
+
+  .card-badge {
+    position: absolute;
+    top: -12px; left: 24px;
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+  }
+
+  .badge-before { background: rgba(168,180,188,0.3); color: var(--silver); }
+  .badge-after  { background: var(--gold); color: var(--forest); }
+
+  .before-name {
+    font-family: 'Arial', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 4px;
+    letter-spacing: 2px;
+  }
+
+  .before-tag {
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    margin-bottom: 20px;
+  }
+
+  .before-sep {
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    margin-bottom: 20px;
+  }
+
+  .pain-list { list-style: none; }
+  .pain-list li {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .pain-list li::before { content: '✗'; color: rgba(201,123,132,0.6); flex-shrink: 0; }
+
+  /* AFTER card */
+  .after-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 36px;
+    position: relative;
+  }
+
+  .after-logo-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--white);
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+  }
+
+  .after-logo-tag {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .after-palette {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .palette-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50% 0 50% 0;
+  }
+
+  .win-list { list-style: none; }
+  .win-list li {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .win-list li::before { content: '✓'; color: var(--gold); flex-shrink: 0; }
+
+  /* ── PROCESS ── */
+  #process {
+    background: var(--cream);
+    padding: 120px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #process .inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  #process h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4.5vw, 58px);
+    font-weight: 300;
+    color: var(--forest);
+    line-height: 1.1;
+    margin: 16px 0 12px;
+  }
+
+  #process h2 em { font-style: italic; color: var(--rose); }
+
+  #process .lead {
+    font-size: 16px;
+    color: rgba(26,36,32,0.6);
+    margin-bottom: 60px;
+    line-height: 1.7;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--gold), var(--gold), transparent);
+    opacity: 0.3;
+  }
+
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 0 16px;
+  }
+
+  .step-num {
+    width: 56px;
+    height: 56px;
+    background: var(--forest);
+    border-radius: 50% 0 50% 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--gold);
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+  }
+
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--forest);
+  }
+
+  .step-desc {
+    font-size: 12px;
+    color: rgba(26,36,32,0.55);
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  /* ── CTA ── */
+  #cta {
+    background: var(--forest);
+    padding: 120px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #cta .bg-glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 80% at 50% 50%, rgba(201,168,76,0.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  #cta .blob-1 { width: 400px; height: 250px; background: var(--blush); opacity: 0.05; top: -60px; right: -60px; transform: rotate(-15deg); }
+  #cta .blob-2 { width: 300px; height: 200px; background: var(--sage); opacity: 0.05; bottom: -50px; left: -40px; transform: rotate(20deg); }
+
+  #cta .inner {
+    position: relative;
+    z-index: 2;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  #cta h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 6vw, 76px);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.05;
+    margin: 16px 0 24px;
+  }
+
+  #cta h2 em { font-style: italic; color: var(--blush); }
+
+  #cta p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.8;
+    margin-bottom: 48px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--gold);
+    padding: 18px 40px;
+    text-decoration: none;
+    transition: all 0.3s;
+    margin-bottom: 24px;
+  }
+
+  .cta-btn:hover { background: var(--white); gap: 20px; }
+  .cta-btn::after { content: '→'; font-size: 16px; }
+
+  .cta-or {
+    display: block;
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 2px;
+    margin: 16px 0;
+  }
+
+  .cta-mail {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+    padding-bottom: 2px;
+    transition: all 0.3s;
+  }
+
+  .cta-mail:hover { color: var(--gold); border-color: var(--gold); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    padding: 32px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  footer .foot-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+  }
+
+  footer .foot-logo em {
+    font-style: italic;
+    color: var(--blush);
+    font-size: 11px;
+    margin-left: 6px;
+    letter-spacing: 3px;
+  }
+
+  footer .foot-tagline {
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.2);
+  }
+
+  footer .foot-link {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+  }
+
+  footer .foot-link:hover { color: var(--gold); }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Hero animations */
+  #hero .eyebrow { animation: fadeUp 0.5s ease 0.1s both; }
+  #hero h1       { animation: fadeUp 0.6s ease 0.2s both; }
+  #hero p        { animation: fadeUp 0.6s ease 0.35s both; }
+  #hero .hero-cta { animation: fadeUp 0.6s ease 0.5s both; }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    #hero .inner { grid-template-columns: 1fr; gap: 48px; padding: 0 24px; }
+    .hero-kit { display: none; }
+    #investering, #exempel, #process, #cta { padding: 80px 24px; }
+    .value-grid { grid-template-columns: 1fr; }
+    .price-box { grid-template-columns: 1fr; padding: 36px 28px; gap: 32px; }
+    .before-after { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .steps::before { display: none; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 80" width="28" height="36">
+      <defs>
+        <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#E8C96A"/><stop offset="100%" style="stop-color:#C9A84C"/></linearGradient>
+        <linearGradient id="ns" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#9ABCAC"/><stop offset="100%" style="stop-color:#5A8070"/></linearGradient>
+        <linearGradient id="nb" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#F0C4C8"/><stop offset="100%" style="stop-color:#C97B84"/></linearGradient>
+      </defs>
+      <ellipse cx="28" cy="38" rx="8" ry="24" fill="url(#ns)" opacity="0.85" transform="rotate(-38 28 38)"/>
+      <ellipse cx="38" cy="30" rx="7" ry="20" fill="url(#nb)" opacity="0.9" transform="rotate(28 38 30)"/>
+      <ellipse cx="32" cy="20" rx="6" ry="16" fill="url(#ng)" opacity="0.85" transform="rotate(-5 32 20)"/>
+      <circle cx="30" cy="42" r="4" fill="url(#ng)"/>
+    </svg>
+    <div>
+      <span class="nav-wordmark">Clipora<em>Studio</em></span>
+    </div>
+  </a>
+  <a href="#cta" class="nav-cta">Kom igång</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="bg-glow"></div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <div class="inner">
+    <div>
+      <p class="eyebrow">Brandingkit</p>
+      <h1>Ditt företags<br>första riktiga<br><em>tillgång.</em></h1>
+      <p>Ett genomtänkt brandingkit är inte en kostnad — det är grunden som allt annat byggs på. Hemsida, sociala medier, dokument, annonser. En gång investerat, för alltid använt.</p>
+      <a href="#cta" class="hero-cta">Beställ ditt kit</a>
+    </div>
+
+    <div class="hero-kit">
+      <div class="kit-preview-card">
+        <span class="kit-preview-icon">🎨</span>
+        <div>
+          <div class="kit-preview-title">Färgpalett</div>
+          <div class="kit-preview-desc">Dina exakta färger, dokumenterade och klara att använda överallt.</div>
+        </div>
+      </div>
+      <div class="kit-preview-card">
+        <span class="kit-preview-icon">Aa</span>
+        <div>
+          <div class="kit-preview-title">Typografi</div>
+          <div class="kit-preview-desc">Rätt typsnitt i rätt storlek — rubriker, brödtext, knappar.</div>
+        </div>
+      </div>
+      <div class="kit-preview-card">
+        <span class="kit-preview-icon">✦</span>
+        <div>
+          <div class="kit-preview-title">Logotyp</div>
+          <div class="kit-preview-desc">Ljus och mörk version, med och utan tagline. Alltid skarpt.</div>
+        </div>
+      </div>
+      <div class="kit-preview-card">
+        <span class="kit-preview-icon">💬</span>
+        <div>
+          <div class="kit-preview-title">Tonalitet</div>
+          <div class="kit-preview-desc">Din röst i ord — hur du låter, vad du står för.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTERING -->
+<section id="investering">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="inner">
+    <p class="eyebrow fade-up">Varför ett brandingkit</p>
+    <h2 class="fade-up">Grunden som gör<br><em>allt annat enklare.</em></h2>
+    <p class="lead fade-up">Med ett brandingkit på plats skapar du hemsida, sociala medier, PDF-dokument och annonser snabbare, billigare och med ett resultat som alltid håller ihop. Det är en investering som betalar sig varje gång du använder den.</p>
+
+    <div class="value-grid">
+      <div class="value-card fade-up">
+        <div class="value-num">01</div>
+        <div class="value-title">Du äger det för alltid</div>
+        <div class="value-desc">Ditt brandingkit tillhör dig. Inga prenumerationer, inga löpande kostnader. Det är ditt företags identitet — och du äger den helt.</div>
+      </div>
+      <div class="value-card fade-up">
+        <div class="value-num">02</div>
+        <div class="value-title">Allt hänger ihop</div>
+        <div class="value-desc">Från visitkort till Instagram-inlägg till offert-PDF — med ett kit ser allt du skapar professionellt ut och känns som ett och samma företag.</div>
+      </div>
+      <div class="value-card fade-up">
+        <div class="value-num">03</div>
+        <div class="value-title">Du slipper börja om</div>
+        <div class="value-desc">Utan ett kit börjar man om från noll varje gång. Med ett kit är identiteten redan löst — du kan fokusera på det du egentligen gör bäst.</div>
+      </div>
+    </div>
+
+    <div class="price-box fade-up">
+      <div class="price-box-glow"></div>
+      <div style="position:relative;z-index:1">
+        <div class="price-label">Investering</div>
+        <div class="price-amount">9 000 kr</div>
+        <div class="price-unit">Engångsavgift · exkl. moms</div>
+        <p class="price-note">Du äger alltid allt material. Inga bindningstider, inga dolda avgifter.</p>
+      </div>
+      <ul class="price-includes" style="position:relative;z-index:1">
+        <li>Komplett färgpalett med användningsregler</li>
+        <li>Typografi — rubriker, brödtext, UI-text</li>
+        <li>Logotyp i alla format (ljus, mörk, med tagline)</li>
+        <li>Tonalitetsdokument — din röst i ord</li>
+        <li>Levereras klart att använda direkt</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- EXEMPEL: FÖRE & EFTER -->
+<section id="exempel">
+  <div class="bg-glow"></div>
+  <div class="inner">
+    <div class="section-head">
+      <p class="eyebrow fade-up">Före & efter</p>
+      <h2 class="fade-up">Samma företag.<br><em>Ny närvaro.</em></h2>
+      <p class="lead fade-up">Violas Salong hade bra klippare och lojala kunder — men ingen visste om henne. Det var inte ett kvalitetsproblem. Det var ett identitetsproblem.</p>
+    </div>
+
+    <div class="before-after">
+      <div class="before-card fade-up">
+        <div class="card-badge badge-before">Innan</div>
+        <div class="before-name">VIOLAS SALONG</div>
+        <div class="before-tag">Frisör sedan 2011</div>
+        <div class="before-sep"></div>
+        <ul class="pain-list">
+          <li>Ingen hemsida — en övergiven Facebook-sida</li>
+          <li>Kunder bokar via SMS när Viola klipper</li>
+          <li>Varumärket är ett Word-dokument</li>
+          <li>Svårt att ta betalt för det hon är värd</li>
+          <li>"Folk vet nog inte ens att vi finns"</li>
+        </ul>
+      </div>
+
+      <div class="after-card fade-up">
+        <div class="card-badge badge-after">Efter</div>
+        <div class="after-logo-name">Violas Salong</div>
+        <div class="after-logo-tag">Frisör · Stilist · Kista</div>
+        <div class="after-palette">
+          <div class="palette-dot" style="background:#2D4A3E"></div>
+          <div class="palette-dot" style="background:#7A9E8E"></div>
+          <div class="palette-dot" style="background:#E8B4B8"></div>
+          <div class="palette-dot" style="background:#C9A84C"></div>
+          <div class="palette-dot" style="background:#FAF6F0"></div>
+        </div>
+        <ul class="win-list">
+          <li>Eget varumärke — färger, typsnitt, logotyp</li>
+          <li>Professionell känsla som matchar kvaliteten</li>
+          <li>Kan använda kitet för allt hon skapar</li>
+          <li>Tar betalt för det hon faktiskt är värd</li>
+          <li>Kunderna hittar henne — och väljer henne</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="inner">
+    <p class="eyebrow fade-up">Så här fungerar det</p>
+    <h2 class="fade-up">Enkelt.<br><em>Från start till leverans.</em></h2>
+    <p class="lead fade-up">Du behöver inte veta vad du vill — du behöver bara svara på frågorna. Resten tar jag hand om.</p>
+
+    <div class="steps">
+      <div class="step fade-up">
+        <div class="step-num">1</div>
+        <div class="step-title">Formulär</div>
+        <div class="step-desc">Du fyller i ett genomtänkt formulär om ditt företag, din känsla och dina önskemål.</div>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">2</div>
+        <div class="step-title">Skapande</div>
+        <div class="step-desc">Jag tar fram ditt kit — färger, typsnitt, logotyp och tonalitet, skräddarsytt för dig.</div>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">3</div>
+        <div class="step-title">Feedback</div>
+        <div class="step-desc">Du får se förslaget och vi finjusterar tills det känns helt rätt.</div>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">4</div>
+        <div class="step-title">Leverans</div>
+        <div class="step-desc">Du får ditt kit klart att använda — i alla format du behöver.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="bg-glow"></div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="inner">
+    <p class="eyebrow fade-up">Redo?</p>
+    <h2 class="fade-up">Ditt varumärke<br>börjar <em>här.</em></h2>
+    <p class="fade-up">Fyll i formuläret — det tar ungefär 15 minuter och är starten på något som tillhör dig för alltid.</p>
+    <div class="fade-up">
+      <a href="mailto:jenny@cliporastudio.se?subject=Brandingkit" class="cta-btn">Beställ ditt brandingkit</a>
+      <span class="cta-or">eller</span>
+      <a href="mailto:jenny@cliporastudio.se" class="cta-mail">jenny@cliporastudio.se</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">Clipora<em>Studio</em></div>
+  <div class="foot-tagline">Tekniken är inte målet · Resultatet är allt</div>
+  <a href="/" class="foot-link">cliporastudio.se</a>
+</footer>
+
+<script>
+// Scroll-triggered fade-up
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
