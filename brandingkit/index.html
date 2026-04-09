@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="sv">
 <head>
@@ -779,7 +780,42 @@
 
   footer .foot-link:hover { color: var(--gold); }
 
-  /* ── Animations ── */
+  /* ── PASSAR DIG ── */
+  #passar {
+    background: var(--cream);
+    padding: 100px 48px;
+    text-align: center;
+  }
+  #passar .inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  #passar h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(34px, 4vw, 54px);
+    font-weight: 300;
+    color: var(--forest);
+    line-height: 1.15;
+    margin: 16px 0 40px;
+  }
+  #passar h2 em { font-style: italic; color: var(--rose); }
+  .passar-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    text-align: left;
+  }
+  .passar-item {
+    background: var(--forest);
+    padding: 24px 28px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .passar-check { font-size: 16px; color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+  .passar-text { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.65; }
+
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -814,6 +850,8 @@
     .steps { grid-template-columns: 1fr 1fr; gap: 32px; }
     .steps::before { display: none; }
     footer { flex-direction: column; gap: 12px; text-align: center; }
+    #passar { padding: 80px 24px; }
+    .passar-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -852,7 +890,7 @@
       <p class="eyebrow">Brandingkit</p>
       <h1>Ditt företags<br>första riktiga<br><em>tillgång.</em></h1>
       <p>Ett genomtänkt brandingkit är inte en kostnad — det är grunden som allt annat byggs på. Hemsida, sociala medier, dokument, annonser. En gång investerat, för alltid använt.</p>
-      <a href="#cta" class="hero-cta">Beställ ditt kit</a>
+      <a href="#cta" class="hero-cta">Ta första steget</a>
     </div>
 
     <div class="hero-kit">
@@ -939,20 +977,20 @@
   <div class="bg-glow"></div>
   <div class="inner">
     <div class="section-head">
-      <p class="eyebrow fade-up">Före & efter</p>
+      <p class="eyebrow fade-up">Illustrativt exempel</p>
       <h2 class="fade-up">Samma företag.<br><em>Ny närvaro.</em></h2>
-      <p class="lead fade-up">Violas Salong hade bra klippare och lojala kunder — men ingen visste om henne. Det var inte ett kvalitetsproblem. Det var ett identitetsproblem.</p>
+      <p class="lead fade-up">En salong med bra klippare och lojala kunder — men ingen visste om henne. Det var inte ett kvalitetsproblem. Det var ett identitetsproblem.</p>
     </div>
 
     <div class="before-after">
       <div class="before-card fade-up">
         <div class="card-badge badge-before">Innan</div>
-        <div class="before-name">VIOLAS SALONG</div>
+        <div class="before-name">EN SALONG</div>
         <div class="before-tag">Frisör sedan 2011</div>
         <div class="before-sep"></div>
         <ul class="pain-list">
           <li>Ingen hemsida — en övergiven Facebook-sida</li>
-          <li>Kunder bokar via SMS när Viola klipper</li>
+          <li>Kunder bokar via SMS när hon klipper</li>
           <li>Varumärket är ett Word-dokument</li>
           <li>Svårt att ta betalt för det hon är värd</li>
           <li>"Folk vet nog inte ens att vi finns"</li>
@@ -961,8 +999,8 @@
 
       <div class="after-card fade-up">
         <div class="card-badge badge-after">Efter</div>
-        <div class="after-logo-name">Violas Salong</div>
-        <div class="after-logo-tag">Frisör · Stilist · Kista</div>
+        <div class="after-logo-name">Din Salong</div>
+        <div class="after-logo-tag">Frisör · Stilist · Din stad</div>
         <div class="after-palette">
           <div class="palette-dot" style="background:#2D4A3E"></div>
           <div class="palette-dot" style="background:#7A9E8E"></div>
@@ -1014,6 +1052,32 @@
   </div>
 </section>
 
+<!-- PASSAR DIG SOM -->
+<section id="passar">
+  <div class="inner">
+    <p class="eyebrow fade-up">För dig som</p>
+    <h2 class="fade-up">Det här passar dig<br><em>som...</em></h2>
+    <div class="passar-grid">
+      <div class="passar-item fade-up">
+        <span class="passar-check">✦</span>
+        <span class="passar-text">Driver eget eller är på väg att starta — och vill bygga rätt från början.</span>
+      </div>
+      <div class="passar-item fade-up">
+        <span class="passar-check">✦</span>
+        <span class="passar-text">Vill se professionell ut utan att anlita en hel byrå med byråprislapp.</span>
+      </div>
+      <div class="passar-item fade-up">
+        <span class="passar-check">✦</span>
+        <span class="passar-text">Är trött på att allt ser olika ut — i sociala medier, dokument och annonser.</span>
+      </div>
+      <div class="passar-item fade-up">
+        <span class="passar-check">✦</span>
+        <span class="passar-text">Vill ha en identitet som känns genomtänkt, sann och lätt att använda varje dag.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA -->
 <section id="cta">
   <div class="bg-glow"></div>
@@ -1022,9 +1086,10 @@
   <div class="inner">
     <p class="eyebrow fade-up">Redo?</p>
     <h2 class="fade-up">Ditt varumärke<br>börjar <em>här.</em></h2>
-    <p class="fade-up">Fyll i formuläret — det tar ungefär 15 minuter och är starten på något som tillhör dig för alltid.</p>
+    <p class="fade-up" style="font-size:15px;color:rgba(255,255,255,0.45);font-style:italic;margin-bottom:12px;">Jag hjälper småföretagare och kreatörer att ta fram en visuell identitet som känns genomtänkt, användbar och sann mot det de bygger. Målet är inte bara att det ska vara fint — utan att det ska bli lättare att skapa allt annat efteråt.</p>
+    <p class="fade-up">Maila mig så skickar jag formuläret — det tar ungefär 15 minuter att fylla i och är första steget mot ett varumärke som känns som ditt.</p>
     <div class="fade-up">
-      <a href="mailto:jenny@cliporastudio.se?subject=Brandingkit" class="cta-btn">Beställ ditt brandingkit</a>
+      <a href="mailto:jenny@cliporastudio.se" class="cta-btn">Ta första steget</a>
       <span class="cta-or">eller</span>
       <a href="mailto:jenny@cliporastudio.se" class="cta-mail">jenny@cliporastudio.se</a>
     </div>
@@ -1039,7 +1104,6 @@
 </footer>
 
 <script>
-// Scroll-triggered fade-up
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
     if (entry.isIntersecting) {
