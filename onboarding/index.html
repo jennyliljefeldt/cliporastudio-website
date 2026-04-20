@@ -1,0 +1,1132 @@
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Välkommen — Clipora Studio</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #2D4A3E;
+    --sage:   #7A9E8E;
+    --blush:  #E8B4B8;
+    --rose:   #C97B84;
+    --cream:  #FAF6F0;
+    --gold:   #C9A84C;
+    --silver: #A8B4BC;
+    --ink:    #1A2420;
+    --white:  #FFFFFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--forest);
+    padding: 64px 40px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 20% 50%, rgba(201,168,76,0.10) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 80% 30%, rgba(232,180,184,0.08) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  .leaf-blob {
+    position: absolute;
+    border-radius: 50% 0 50% 0;
+    pointer-events: none;
+  }
+  .leaf-blob-1 { width: 200px; height: 320px; background: var(--sage); opacity: 0.05; top: -60px; left: -60px; transform: rotate(-38deg); }
+  .leaf-blob-2 { width: 160px; height: 260px; background: var(--blush); opacity: 0.06; bottom: -40px; right: -40px; transform: rotate(28deg); }
+
+  .logo-wrap { margin-bottom: 40px; animation: fadeUp 0.8s ease both; }
+
+  .logo-inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+
+  .logo-wordmark {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: #FFFFFF;
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+
+  .logo-studio {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    color: #E8B4B8;
+    letter-spacing: 8px;
+    margin-top: 4px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(38px, 6vw, 64px);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 20px;
+    animation: fadeUp 0.8s ease 0.3s both;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--blush);
+  }
+
+  .gold-divider {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 24px auto;
+    animation: fadeUp 0.8s ease 0.4s both;
+  }
+
+  .hero p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.65);
+    max-width: 540px;
+    margin: 0 auto;
+    animation: fadeUp 0.8s ease 0.5s both;
+  }
+
+  /* ── FORM WRAPPER ── */
+  .form-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    margin-top: 64px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(45,74,62,0.12);
+  }
+
+  .section-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .section-title-wrap {}
+
+  .section-eyebrow {
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--forest);
+  }
+
+  /* ── FIELDS ── */
+  .field {
+    margin-bottom: 28px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--forest);
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+
+  .field label .hint-inline {
+    font-size: 10px;
+    letter-spacing: 0;
+    text-transform: none;
+    font-weight: 300;
+    color: var(--forest);
+    opacity: 0.55;
+  }
+
+  .field label .hint {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 0;
+    text-transform: none;
+    font-weight: 300;
+    color: var(--forest);
+    opacity: 0.65;
+    margin-top: 3px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="date"],
+  textarea {
+    width: 100%;
+    background: var(--white);
+    border: 1px solid rgba(45,74,62,0.2);
+    border-radius: 4px;
+    padding: 14px 16px;
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--ink);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    -webkit-appearance: none;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="date"]:focus,
+  textarea:focus {
+    border-color: var(--sage);
+    box-shadow: 0 0 0 3px rgba(122,158,142,0.12);
+  }
+
+  textarea {
+    min-height: 110px;
+    resize: vertical;
+  }
+
+  /* Two-column row */
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media (max-width: 560px) {
+    .field-row { grid-template-columns: 1fr; }
+  }
+
+  /* ── SCALE ── */
+  .scale-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .scale-label {
+    font-size: 13px;
+    color: var(--ink);
+    width: 130px;
+    flex-shrink: 0;
+  }
+
+  .scale-label.right {
+    text-align: right;
+  }
+
+  .scale-track {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .scale-track input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid rgba(45,74,62,0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .scale-track input[type="radio"]:checked {
+    background: var(--forest);
+    border-color: var(--forest);
+    box-shadow: 0 0 0 3px rgba(45,74,62,0.12);
+  }
+
+  .scale-track input[type="radio"]:hover {
+    border-color: var(--sage);
+  }
+
+  /* ── CHECKBOXES ── */
+  .checkbox-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  @media (max-width: 480px) {
+    .checkbox-grid { grid-template-columns: 1fr; }
+  }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background: var(--white);
+    border: 1px solid rgba(45,74,62,0.15);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    font-size: 13px;
+    color: var(--ink);
+  }
+
+  .check-item:hover {
+    border-color: var(--sage);
+    background: rgba(122,158,142,0.05);
+  }
+
+  .check-item input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid rgba(45,74,62,0.3);
+    border-radius: 2px;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+  }
+
+  .check-item input[type="checkbox"]:checked {
+    background: var(--forest);
+    border-color: var(--forest);
+  }
+
+  .check-item input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 1px;
+    width: 8px;
+    height: 5px;
+    border-left: 1.5px solid white;
+    border-bottom: 1.5px solid white;
+    transform: rotate(-45deg);
+  }
+
+  /* ── RADIO CARDS (logotyp) ── */
+  .radio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  @media (max-width: 480px) {
+    .radio-grid { grid-template-columns: 1fr; }
+  }
+
+  .radio-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background: var(--white);
+    border: 1px solid rgba(45,74,62,0.15);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    font-size: 13px;
+    color: var(--ink);
+  }
+
+  .radio-card:hover {
+    border-color: var(--sage);
+    background: rgba(122,158,142,0.05);
+  }
+
+  .radio-card input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid rgba(45,74,62,0.3);
+    border-radius: 50%;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .radio-card input[type="radio"]:checked {
+    background: var(--forest);
+    border-color: var(--forest);
+    box-shadow: inset 0 0 0 3px white;
+  }
+
+  /* ── COLOR SWATCHES ── */
+  .color-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .color-swatch-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .color-swatch {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid rgba(45,74,62,0.15);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .color-swatch input[type="color"] {
+    position: absolute;
+    inset: -4px;
+    width: calc(100% + 8px);
+    height: calc(100% + 8px);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    opacity: 0;
+  }
+
+  .color-swatch-preview {
+    position: absolute;
+    inset: 0;
+    background: #e0e0e0;
+    pointer-events: none;
+    transition: background 0.1s;
+  }
+
+  .color-swatch:hover {
+    border-color: var(--sage);
+  }
+
+  .color-hex {
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--ink);
+    opacity: 0.55;
+    text-align: center;
+    width: 56px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* ── PRESENCE TOGGLE ── */
+  .presence-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  @media (max-width: 480px) {
+    .presence-grid { grid-template-columns: 1fr; }
+  }
+
+  .toggle-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background: var(--white);
+    border: 1px solid rgba(45,74,62,0.15);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--ink);
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .toggle-item:hover {
+    border-color: var(--sage);
+    background: rgba(122,158,142,0.05);
+  }
+
+  .toggle-item input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid rgba(45,74,62,0.3);
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+
+  .toggle-item input[type="radio"]:checked {
+    background: var(--forest);
+    border-color: var(--forest);
+    box-shadow: inset 0 0 0 3px white;
+  }
+
+  /* ── SUBMIT ── */
+  .submit-section {
+    margin-top: 64px;
+    padding: 48px 40px;
+    background: var(--forest);
+    border-radius: 8px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .submit-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(201,168,76,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .submit-section p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: 8px;
+    position: relative;
+  }
+
+  .submit-section p em {
+    font-style: italic;
+    color: var(--blush);
+  }
+
+  .submit-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 28px;
+    font-family: 'Jost', sans-serif !important;
+    font-size: 12px !important;
+    position: relative;
+  }
+
+  .btn-submit {
+    display: inline-block;
+    padding: 16px 48px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s;
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .btn-submit:hover {
+    background: var(--gold);
+    color: var(--forest);
+  }
+
+  /* ── SUCCESS ── */
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 48px 24px;
+  }
+
+  .success-msg.visible { display: block; }
+
+  .success-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(45,74,62,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+  }
+
+  .success-msg h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--forest);
+    margin-bottom: 12px;
+  }
+
+  .success-msg p {
+    font-size: 14px;
+    color: var(--silver);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    padding: 32px 24px;
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+
+  footer a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── HIDDEN INPUTS ── */
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="leaf-blob leaf-blob-1"></div>
+  <div class="leaf-blob leaf-blob-2"></div>
+
+  <div class="logo-wrap">
+    <div class="logo-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 100" width="48" height="60">
+        <defs>
+          <linearGradient id="lgold" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#E8C96A"/>
+            <stop offset="50%" style="stop-color:#C9A84C"/>
+            <stop offset="100%" style="stop-color:#A07830"/>
+          </linearGradient>
+          <linearGradient id="lsage" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#9ABCAC"/>
+            <stop offset="100%" style="stop-color:#5A8070"/>
+          </linearGradient>
+          <linearGradient id="lblush" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#F0C4C8"/>
+            <stop offset="100%" style="stop-color:#C97B84"/>
+          </linearGradient>
+        </defs>
+        <ellipse cx="38" cy="48" rx="10" ry="30" fill="url(#lsage)" opacity="0.85" transform="rotate(-38 38 48)"/>
+        <ellipse cx="56" cy="38" rx="8" ry="26" fill="url(#lblush)" opacity="0.9" transform="rotate(28 56 38)"/>
+        <ellipse cx="47" cy="26" rx="7" ry="21" fill="url(#lgold)" opacity="0.85" transform="rotate(-5 47 26)"/>
+        <ellipse cx="45" cy="44" rx="6" ry="19" fill="url(#lsage)" opacity="0.95" transform="rotate(10 45 44)"/>
+        <circle cx="45" cy="56" r="4" fill="url(#lgold)"/>
+        <line x1="45" y1="61" x2="45" y2="76" stroke="#5A8070" stroke-width="1.5" opacity="0.55" stroke-linecap="round"/>
+        <ellipse cx="39" cy="72" rx="4" ry="10" fill="#7A9E8E" opacity="0.4" transform="rotate(-25 39 72)"/>
+        <ellipse cx="51" cy="72" rx="4" ry="10" fill="#7A9E8E" opacity="0.4" transform="rotate(25 51 72)"/>
+      </svg>
+      <div class="logo-text">
+        <div class="logo-wordmark">Clipora</div>
+        <div class="logo-studio">Studio</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="hero-eyebrow">Varumärkesformulär</p>
+  <h1>Välkommen — det här är starten på<br><em>ditt varumärke.</em></h1>
+  <div class="gold-divider"></div>
+  <p>Fyll i formuläret så omsorgsfullt du kan — ju mer du delar, desto mer träffsäkert blir resultatet. Det finns inga rätt eller fel svar. Skriv från hjärtat.</p>
+</div>
+
+<!-- FORM -->
+<div class="form-container">
+  <form id="onboarding-form" action="https://formspree.io/f/mnjldwre" method="POST">
+
+    <!-- Hidden: copy to customer -->
+    <input type="hidden" name="_replyto" id="reply-to-field">
+
+    <!-- ── 1. OM DIG & FÖRETAGET ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">1</div>
+        <div class="section-title-wrap">
+          <div class="section-eyebrow">Steg ett</div>
+          <div class="section-title">Om dig &amp; företaget</div>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Ditt namn</label>
+          <input type="text" name="namn" placeholder="För- och efternamn" required>
+        </div>
+        <div class="field">
+          <label>E-postadress <span class="hint-inline">(dina svar skickas även till dig)</span></label>
+          <input type="email" name="email" id="email-field" placeholder="din@email.se" required>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Företagsnamn</label>
+          <input type="text" name="foretagsnamn" placeholder="Exakt stavning">
+        </div>
+        <div class="field">
+          <label>Bransch / typ av verksamhet</label>
+          <input type="text" name="bransch" placeholder="Ex: frisör, coach, café…">
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Webbadress (om befintlig)</label>
+          <input type="text" name="webbadress" placeholder="www.dinsite.se">
+        </div>
+        <div class="field">
+          <label>Instagram / Facebook / LinkedIn</label>
+          <input type="text" name="sociala_medier" placeholder="@ditt_konto">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Beskriv vad ditt företag gör
+          <span class="hint">Med egna ord, som om du förklarade för en vän</span>
+        </label>
+        <textarea name="vad_ni_gor" placeholder="Berätta fritt…"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Vem är din idealkund?
+          <span class="hint">Beskriv personen — ålder, livssituation, vad de värderar</span>
+        </label>
+        <textarea name="idealkund" placeholder="Beskriv din drömkund…"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Vad skiljer dig från dina konkurrenter?
+          <span class="hint">Vad kan du som ingen annan kan?</span>
+        </label>
+        <textarea name="usp" placeholder="Din unika styrka…"></textarea>
+      </div>
+    </div>
+
+    <!-- ── 2. PERSONLIGHET & KÄNSLA ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">2</div>
+        <div class="section-title-wrap">
+          <div class="section-eyebrow">Steg två</div>
+          <div class="section-title">Personlighet &amp; känsla</div>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Tre ord som ska beskriva ditt varumärke <span class="hint-inline">(ex: varm, modig, lekfull)</span></label>
+          <input type="text" name="ord_positiva" placeholder="Ord 1, ord 2, ord 3">
+        </div>
+        <div class="field">
+          <label>Tre ord varumärket INTE ska förknippas med</label>
+          <input type="text" name="ord_negativa" placeholder="Ord 1, ord 2, ord 3">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Var på skalan befinner sig ditt varumärke?
+          <span class="hint">Markera den cirkel som stämmer bäst</span>
+        </label>
+
+        <div style="margin-top: 16px;">
+          <div class="scale-item">
+            <span class="scale-label">Lekfullt</span>
+            <div class="scale-track">
+              <input type="radio" name="skala_lek_serios" value="1"><input type="radio" name="skala_lek_serios" value="2"><input type="radio" name="skala_lek_serios" value="3"><input type="radio" name="skala_lek_serios" value="4"><input type="radio" name="skala_lek_serios" value="5"><input type="radio" name="skala_lek_serios" value="6"><input type="radio" name="skala_lek_serios" value="7"><input type="radio" name="skala_lek_serios" value="8"><input type="radio" name="skala_lek_serios" value="9"><input type="radio" name="skala_lek_serios" value="10">
+            </div>
+            <span class="scale-label right">Seriöst</span>
+          </div>
+          <div class="scale-item">
+            <span class="scale-label">Modernt</span>
+            <div class="scale-track">
+              <input type="radio" name="skala_modern_klassisk" value="1"><input type="radio" name="skala_modern_klassisk" value="2"><input type="radio" name="skala_modern_klassisk" value="3"><input type="radio" name="skala_modern_klassisk" value="4"><input type="radio" name="skala_modern_klassisk" value="5"><input type="radio" name="skala_modern_klassisk" value="6"><input type="radio" name="skala_modern_klassisk" value="7"><input type="radio" name="skala_modern_klassisk" value="8"><input type="radio" name="skala_modern_klassisk" value="9"><input type="radio" name="skala_modern_klassisk" value="10">
+            </div>
+            <span class="scale-label right">Klassiskt</span>
+          </div>
+          <div class="scale-item">
+            <span class="scale-label">Minimalistiskt</span>
+            <div class="scale-track">
+              <input type="radio" name="skala_minimal_rikt" value="1"><input type="radio" name="skala_minimal_rikt" value="2"><input type="radio" name="skala_minimal_rikt" value="3"><input type="radio" name="skala_minimal_rikt" value="4"><input type="radio" name="skala_minimal_rikt" value="5"><input type="radio" name="skala_minimal_rikt" value="6"><input type="radio" name="skala_minimal_rikt" value="7"><input type="radio" name="skala_minimal_rikt" value="8"><input type="radio" name="skala_minimal_rikt" value="9"><input type="radio" name="skala_minimal_rikt" value="10">
+            </div>
+            <span class="scale-label right">Rikt &amp; detaljerat</span>
+          </div>
+          <div class="scale-item">
+            <span class="scale-label">Feminint</span>
+            <div class="scale-track">
+              <input type="radio" name="skala_fem_mask" value="1"><input type="radio" name="skala_fem_mask" value="2"><input type="radio" name="skala_fem_mask" value="3"><input type="radio" name="skala_fem_mask" value="4"><input type="radio" name="skala_fem_mask" value="5"><input type="radio" name="skala_fem_mask" value="6"><input type="radio" name="skala_fem_mask" value="7"><input type="radio" name="skala_fem_mask" value="8"><input type="radio" name="skala_fem_mask" value="9"><input type="radio" name="skala_fem_mask" value="10">
+            </div>
+            <span class="scale-label right">Maskulint</span>
+          </div>
+          <div class="scale-item">
+            <span class="scale-label">Lokalt</span>
+            <div class="scale-track">
+              <input type="radio" name="skala_lokal_global" value="1"><input type="radio" name="skala_lokal_global" value="2"><input type="radio" name="skala_lokal_global" value="3"><input type="radio" name="skala_lokal_global" value="4"><input type="radio" name="skala_lokal_global" value="5"><input type="radio" name="skala_lokal_global" value="6"><input type="radio" name="skala_lokal_global" value="7"><input type="radio" name="skala_lokal_global" value="8"><input type="radio" name="skala_lokal_global" value="9"><input type="radio" name="skala_lokal_global" value="10">
+            </div>
+            <span class="scale-label right">Globalt</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Finns det ett varumärke du beundrar?
+          <span class="hint">Valfri bransch — vilket och varför?</span>
+        </label>
+        <textarea name="inspiration_varumarke" placeholder="Exempelvis: IKEA för sin enkelhet, eller Aesop för sin omsorgsfullt berättade historia…"></textarea>
+      </div>
+    </div>
+
+    <!-- ── 3. VISUELL STIL ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">3</div>
+        <div class="section-title-wrap">
+          <div class="section-eyebrow">Steg tre</div>
+          <div class="section-title">Visuell stil</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Kryssa det som stämmer — flera val möjliga</label>
+        <div class="checkbox-grid" style="margin-top:10px;">
+          <label class="check-item"><input type="checkbox" name="stil[]" value="Rent & minimalistiskt"> Rent &amp; minimalistiskt</label>
+          <label class="check-item"><input type="checkbox" name="stil[]" value="Varmt & organiskt"> Varmt &amp; organiskt</label>
+          <label class="check-item"><input type="checkbox" name="stil[]" value="Elegant & lyxigt"> Elegant &amp; lyxigt</label>
+          <label class="check-item"><input type="checkbox" name="stil[]" value="Lekfullt & färgstarkt"> Lekfullt &amp; färgstarkt</label>
+          <label class="check-item"><input type="checkbox" name="stil[]" value="Rustikt & hantverk"> Rustikt &amp; hantverk</label>
+          <label class="check-item"><input type="checkbox" name="stil[]" value="Modernt & grafiskt"> Modernt &amp; grafiskt</label>
+          <label class="check-item"><input type="checkbox" name="stil[]" value="Naturinspirerat/botaniskt"> Naturinspirerat/botaniskt</label>
+          <label class="check-item"><input type="checkbox" name="stil[]" value="Annat"> Annat (beskriv nedan)</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Förtydligande / annat</label>
+        <input type="text" name="stil_annat" placeholder="Beskriv gärna om du valde Annat…">
+      </div>
+
+      <div class="field">
+        <label>Moodboard / inspiration
+          <span class="hint">Länk till Pinterest, Instagram-konto, eller hemsidor du gillar</span>
+        </label>
+        <textarea name="moodboard" placeholder="Klistra in länkar eller beskriv…" style="min-height:80px;"></textarea>
+      </div>
+    </div>
+
+    <!-- ── 4. FÄRGER ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">4</div>
+        <div class="section-title-wrap">
+          <div class="section-eyebrow">Steg fyra</div>
+          <div class="section-title">Färger</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Färger du attraheras av
+          <span class="hint">Klicka på cirklarna för att välja, eller skriv hex-kod nedan</span>
+        </label>
+        <div class="color-row" style="margin-top:12px;">
+          <div class="color-swatch-wrap">
+            <div class="color-swatch" id="swatch-a1">
+              <div class="color-swatch-preview" id="preview-a1" style="background:#e0e0e0;"></div>
+              <input type="color" onchange="updateSwatch('a1',this.value)">
+            </div>
+            <span class="color-hex" id="hex-a1">—</span>
+          </div>
+          <div class="color-swatch-wrap">
+            <div class="color-swatch" id="swatch-a2">
+              <div class="color-swatch-preview" id="preview-a2" style="background:#e0e0e0;"></div>
+              <input type="color" onchange="updateSwatch('a2',this.value)">
+            </div>
+            <span class="color-hex" id="hex-a2">—</span>
+          </div>
+          <div class="color-swatch-wrap">
+            <div class="color-swatch" id="swatch-a3">
+              <div class="color-swatch-preview" id="preview-a3" style="background:#e0e0e0;"></div>
+              <input type="color" onchange="updateSwatch('a3',this.value)">
+            </div>
+            <span class="color-hex" id="hex-a3">—</span>
+          </div>
+          <div class="color-swatch-wrap">
+            <div class="color-swatch" id="swatch-a4">
+              <div class="color-swatch-preview" id="preview-a4" style="background:#e0e0e0;"></div>
+              <input type="color" onchange="updateSwatch('a4',this.value)">
+            </div>
+            <span class="color-hex" id="hex-a4">—</span>
+          </div>
+          <div class="color-swatch-wrap">
+            <div class="color-swatch" id="swatch-a5">
+              <div class="color-swatch-preview" id="preview-a5" style="background:#e0e0e0;"></div>
+              <input type="color" onchange="updateSwatch('a5',this.value)">
+            </div>
+            <span class="color-hex" id="hex-a5">—</span>
+          </div>
+        </div>
+        <input type="hidden" name="farger_gillar" id="farger_gillar_input">
+        <div style="margin-top:12px;">
+          <input type="text" name="farger_gillar_text" placeholder="Eller skriv hex-koder / färgnamn: #C9A84C, terrakotta, djupblå…">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Färger du vill undvika</label>
+        <input type="text" name="farger_undvika" placeholder="Ex: neonrosa, svart, orange…">
+      </div>
+
+      <div class="field">
+        <label>Branschfärger att förhålla sig till
+          <span class="hint">Finns det färger som är starkt förknippade med din bransch?</span>
+        </label>
+        <input type="text" name="branschfarger" placeholder="Ex: sjukvård = blått och vitt, juridik = mörkblått…">
+      </div>
+    </div>
+
+    <!-- ── 5. LOGOTYP ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">5</div>
+        <div class="section-title-wrap">
+          <div class="section-eyebrow">Steg fem</div>
+          <div class="section-title">Logotyp</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Typ av logotyp — vad tilltalar dig mest?</label>
+        <div class="radio-grid" style="margin-top:10px;">
+          <label class="radio-card"><input type="radio" name="logotyp_typ" value="Enbart text (wordmark)"> Enbart text (wordmark)</label>
+          <label class="radio-card"><input type="radio" name="logotyp_typ" value="Text + symbol / ikon"> Text + symbol / ikon</label>
+          <label class="radio-card"><input type="radio" name="logotyp_typ" value="Enbart symbol / ikon"> Enbart symbol / ikon</label>
+          <label class="radio-card"><input type="radio" name="logotyp_typ" value="Monogram / initialer"> Monogram / initialer</label>
+          <label class="radio-card"><input type="radio" name="logotyp_typ" value="Emblem / badge-stil"> Emblem / badge-stil</label>
+          <label class="radio-card"><input type="radio" name="logotyp_typ" value="Vet inte – förlitar mig på dig"> Vet inte — förlitar mig på dig</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Exakt företagsnamn i logotypen
+          <span class="hint">Stavning, versaler, förkortning etc.</span>
+        </label>
+        <input type="text" name="logotyp_namn" placeholder="Ex: VILLA SOFIA eller Villa Sofia eller VS">
+      </div>
+
+      <div class="field">
+        <label>Önskad tagline / slogan
+          <span class="hint">Kan även tas fram tillsammans om du inte har en</span>
+        </label>
+        <input type="text" name="tagline" placeholder="Ex: Skönhet på dina villkor">
+      </div>
+
+      <div class="field">
+        <label>Befintlig logotyp eller element att ta hänsyn till</label>
+        <textarea name="befintlig_logotyp" placeholder="Bevara, vidareutveckla eller ta avstånd från? Beskriv…" style="min-height:80px;"></textarea>
+      </div>
+    </div>
+
+    <!-- ── 6. PRAKTISKT & LEVERANS ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">6</div>
+        <div class="section-title-wrap">
+          <div class="section-eyebrow">Steg sex</div>
+          <div class="section-title">Praktiskt &amp; leverans</div>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Önskat startdatum</label>
+          <input type="date" name="startdatum">
+        </div>
+        <div class="field">
+          <label>Eventuellt deadline</label>
+          <input type="date" name="deadline">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Var ska varumärket användas? — flera val möjliga</label>
+        <div class="checkbox-grid" style="margin-top:10px;">
+          <label class="check-item"><input type="checkbox" name="anvandning[]" value="Hemsida"> Hemsida</label>
+          <label class="check-item"><input type="checkbox" name="anvandning[]" value="Instagram"> Instagram</label>
+          <label class="check-item"><input type="checkbox" name="anvandning[]" value="Facebook"> Facebook</label>
+          <label class="check-item"><input type="checkbox" name="anvandning[]" value="LinkedIn"> LinkedIn</label>
+          <label class="check-item"><input type="checkbox" name="anvandning[]" value="Visitkort / trycksaker"> Visitkort / trycksaker</label>
+          <label class="check-item"><input type="checkbox" name="anvandning[]" value="Skylt / fysisk miljö"> Skylt / fysisk miljö</label>
+          <label class="check-item"><input type="checkbox" name="anvandning[]" value="Nyhetsbrev / e-post"> Nyhetsbrev / e-post</label>
+          <label class="check-item"><input type="checkbox" name="anvandning[]" value="Annat"> Annat</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Befintlig digital närvaro</label>
+        <div class="presence-grid" style="margin-top:10px;">
+          <label class="toggle-item"><input type="radio" name="doman" value="Jag har en domän"> Jag har en domän</label>
+          <label class="toggle-item"><input type="radio" name="doman" value="Jag har ingen domän ännu"> Jag har ingen domän ännu</label>
+          <label class="toggle-item"><input type="radio" name="hemsida" value="Jag har en befintlig hemsida"> Jag har en befintlig hemsida</label>
+          <label class="toggle-item"><input type="radio" name="hemsida" value="Jag har ingen hemsida"> Jag har ingen hemsida</label>
+          <label class="toggle-item"><input type="radio" name="facebook_status" value="Jag har en Facebook-sida"> Jag har en Facebook-sida</label>
+          <label class="toggle-item"><input type="radio" name="instagram_status" value="Jag har en Instagram"> Jag har en Instagram</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Webbadress / domän (om befintlig)</label>
+        <input type="text" name="befintlig_doman" placeholder="www.dinsite.se">
+      </div>
+
+      <div class="field">
+        <label>Befintlig hemsida eller sociala medier som behöver ansiktslyft
+          <span class="hint">Beskriv vad som inte fungerar idag</span>
+        </label>
+        <textarea name="ansiktslyft" placeholder="Berätta vad du vill förbättra…" style="min-height:80px;"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Något annat du vill att jag vet?
+          <span class="hint">Drömmar, farhågor, eller något som är viktigt för dig</span>
+        </label>
+        <textarea name="ovrigt" placeholder="Skriv fritt — allt är välkommet här…"></textarea>
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="submit-section">
+      <p>Redo att skapa något som <em>verkligen är ditt.</em></p>
+      <p class="submit-note">Du får en kopia av dina svar skickad till din e-postadress.</p>
+      <button type="submit" class="btn-submit">Skicka mina svar</button>
+    </div>
+
+  </form>
+
+  <!-- SUCCESS -->
+  <div class="success-msg" id="success-msg">
+    <div class="success-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2D4A3E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </div>
+    <h2>Tack — formuläret är inskickat.</h2>
+    <p>Jenny hör av sig inom kort. En kopia av dina svar har skickats till din e-postadress.</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p><a href="https://cliporastudio.se">cliporastudio.se</a> &nbsp;·&nbsp; jenny@cliporastudio.se &nbsp;·&nbsp; Tekniken är inte målet · Resultatet är allt</p>
+</footer>
+
+<script>
+  // Sync email to _replyto for Formspree copy
+  document.getElementById('email-field').addEventListener('input', function() {
+    document.getElementById('reply-to-field').value = this.value;
+  });
+
+  // Color swatches
+  function updateSwatch(id, value) {
+    document.getElementById('preview-' + id).style.background = value;
+    document.getElementById('hex-' + id).textContent = value.toUpperCase();
+    updateColorInput();
+  }
+
+  function updateColorInput() {
+    var colors = [];
+    ['a1','a2','a3','a4','a5'].forEach(function(id) {
+      var hex = document.getElementById('hex-' + id).textContent;
+      if (hex !== '—') colors.push(hex);
+    });
+    document.getElementById('farger_gillar_input').value = colors.join(', ');
+  }
+
+  // Form submit → show success
+  var form = document.getElementById('onboarding-form');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var data = new FormData(form);
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(function(res) {
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('success-msg').classList.add('visible');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        alert('Något gick fel. Försök igen eller kontakta jenny@cliporastudio.se');
+      }
+    }).catch(function() {
+      alert('Något gick fel. Kontrollera din internetanslutning och försök igen.');
+    });
+  });
+</script>
+
+</body>
+</html>
